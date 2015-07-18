@@ -1,0 +1,30 @@
+
+<h3>{{ question.title }}</h3>
+
+<div ng-show="isFreeQuestion()">
+  <textarea class="form-control" rows="5" id="comment" ng-model="response"></textarea>
+  <button class= "btn btn-primary" ng-click="addResponse()">Answer</button>
+
+
+  <h3>People Answered:</h3>
+  <ul>
+    <li ng-repeat="response in question.responses">
+      {{ response }}
+    </li>
+  </ul>
+</div>
+
+<div ng-show="isOneChoiceQuestion()">
+  <span ng-repeat="answer in question.answers">
+    <h4>{{answer.value}} - {{answer.votes}} votes </h4>
+  </span>
+</div>
+
+
+<div ng-show="isMultiChoiceQuestion()">
+  <span ng-repeat="answer in question.answers">
+    <h4>{{answer.value}} - {{answer.votes}} votes </h4>
+  </span>
+</div>
+
+<a href= "#/">Go Back</a>

@@ -1,0 +1,13 @@
+<h4>Enter your question here:</h4>
+<textarea class="form-control" rows="5" id="comment" ng-model="question.title"></textarea>
+
+<div ng-show = "isNotFree()">
+
+  <div ng-repeat="answer in question.answers">
+    <input type="text" class="form-control" rows="5" ng-model="answer.value"></input>
+  </div>
+
+<button class= "btn" ng-click="addAnswer()">Add Answer</button>
+</div>
+
+<a href= "#/"><button class= "btn btn-primary" ng-click="addQuestion()">Ask</button></a>
