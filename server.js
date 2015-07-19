@@ -1,13 +1,21 @@
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('test', ['polly']);
+var db;
+
+if (app.get('env') === 'development'){
+  db = mongojs('test', ['polly']);
+}
+else{
+  db = mongojs('  ', ['CollectionName']);
+}
+
 var path = require('path');
 var bodyParser = require('body-parser');
 var ObjectId = require("mongojs").ObjectId;
 var sassMiddleware = require('node-sass-middleware');
 
-//console.log(__dirname + '\\sass');
+console.log();
 
 // adding the sass middleware
 app.use(
@@ -17,7 +25,7 @@ app.use(
     debug: true,
     outputStyle: 'compressed'
   })
-);
+  );
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
@@ -93,6 +101,7 @@ app.put('/questions', function (req, res) {
 });
 
 
-
-app.listen(9000);
-console.log("Server running on port 9000");
+if (app.get('env') === 'development'){
+  app.listen(9000);
+  console.log("Server running on port 9000");
+}
