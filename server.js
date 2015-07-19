@@ -39,7 +39,7 @@ app.put('/questions/vote', function (req, res) {
   var numToAdd = req.body.numToAdd;
   console.log("receieved request to add " +numToAdd + " to " +id +"in index " +index);
   var answers = req.body.question.answers;
-  answers[index].votes++;
+  answers[index].votes+=numToAdd;
   console.log(answers);
 
 
