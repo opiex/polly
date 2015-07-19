@@ -8,7 +8,7 @@ if (app.get('env') === 'development'){
   db = mongojs('test', ['polly']);
 }
 else{
-  db = mongojs('mongodb://polly:polly12@ds041861.mongolab.com:41861/polly', ['questions']);
+  db = mongojs('mongodb://polly:polly12@ds041861.mongolab.com:41861/polly', ['polly']);
 }
 
 var path = require('path');
