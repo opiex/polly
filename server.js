@@ -102,7 +102,7 @@ app.put('/questions', function (req, res) {
 
 
 
-if (app.get('env') === 'development'){
+//if (app.get('env') === 'development'){
   app.listen(9000);
   console.log("Server running on port 9000");
-}
+//}
