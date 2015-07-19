@@ -16,14 +16,15 @@
 
 <div ng-show="isOneChoiceQuestion()">
   <span ng-repeat="answer in question.answers">
-    <h4>{{answer.value}} - {{answer.votes}} votes </h4>
+    <h4>{{answer.value}} - {{answer.votes}} votes | <a href ng-click="addVote($index)">Vote</a></h4>
+
   </span>
 </div>
 
 
 <div ng-show="isMultiChoiceQuestion()">
   <span ng-repeat="answer in question.answers">
-    <h4>{{answer.value}} - {{answer.votes}} votes </h4>
+    <h4>{{answer.value}} - {{answer.votes}} votes | <a href ng-click="addVote($index)">Vote</a></h4>
   </span>
 </div>
 
