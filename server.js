@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
 var db = mongojs('test', ['polly']);
+var port = process.env.PORT || 9000;
 
 if (app.get('env') === 'development'){
   db = mongojs('test', ['polly']);
@@ -103,6 +104,6 @@ app.put('/questions', function (req, res) {
 
 
 //if (app.get('env') === 'development'){
-  app.listen(9000);
-  console.log("Server running on port 9000");
-//}
+app.listen(port, function() {
+  console.log('Our app is running on http://localhost:' + port);
+});
