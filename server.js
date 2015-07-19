@@ -1,13 +1,13 @@
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
-var db;
+var db = mongojs('test', ['polly']);
 
 if (app.get('env') === 'development'){
   db = mongojs('test', ['polly']);
 }
 else{
-  db = mongojs('  ', ['CollectionName']);
+  db = mongojs('mongodb://polly:polly12@ds041861.mongolab.com:41861/polly', ['questions']);
 }
 
 var path = require('path');
@@ -99,6 +99,7 @@ app.put('/questions', function (req, res) {
       );
   }
 });
+
 
 
 if (app.get('env') === 'development'){
