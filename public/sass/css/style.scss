@@ -1,0 +1,181 @@
+
+$navy-blue: #1fb7b8;
+$greenish-swamp: #21d79b;
+$white: #fff;
+$verylight-green: #cdf6ec;
+$greyish: #a4bbb9;
+
+@font-face {
+  font-family: 'NexaFreeBoldwebfont';
+  src: url('../fonts/NexaFreeBoldwebfont.eot');
+  src: local('NexaFreeBoldwebfont'), url('../fonts/NexaFreeBoldwebfont.woff') format('woff'), url('../fonts/NexaFreeBoldwebfont.ttf') format('truetype');
+}
+
+@mixin gradient-vertical($start-color, $end-color, $start-percent, $end-percent) {
+  background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+
+  background-image: -o-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Opera 12
+  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down
+}
+
+
+@mixin text-horizontal-gradient ($start-color, $end-color) {
+  font-size: 22px;
+  font-weight: bold;
+  color: $start-color; // Fallback solid text colour for un-supported browsers
+  background: -webkit-linear-gradient(left, $start-color, $end-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin default-font-size{
+  font-size: 18px;
+}
+
+@mixin button-shape{
+  border-radius: 30px;
+  display: inline-block;
+  margin-top: 50px;
+  padding: 15 100 15 100;
+  width: 100%;
+}
+
+body{
+  font-family: 'NexaFreeBoldwebfont';
+  @include gradient-vertical($navy-blue, $greenish-swamp, $start-percent: 0%, $end-percent: 100%);
+  text-align: center;
+}
+
+h3{
+  @include text-horizontal-gradient ($white, $verylight-green);
+  display:inline-block;
+  font-size: 54px;
+}
+
+h4{
+  @include default-font-size;
+  color: $white;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.onwhite{
+  color: $navy-blue;
+}
+
+ul {
+  list-style:none;
+  padding-left:0;
+}
+
+ul li{
+  @include default-font-size;
+  margin-top: 20px;
+  color: $white;
+}
+
+a, a:hover, a:active, a:visited{
+  @include default-font-size;
+  color: $white;
+}
+
+.whitebutton{
+  @include button-shape;
+  font-weight: bold;
+  background-color: $white;
+  text-align: center;
+  color: $navy-blue;
+  border: 0;
+}
+
+.line-separator{
+  margin-top: 20px;
+  width: 100%;
+  height:1px;
+  background: $white;
+  border-bottom:1px solid $white;
+}
+
+.container{
+  text-align: left;
+}
+
+.logo{
+  margin-top:30px;
+  img{
+    max-width: 102px;
+  }
+}
+
+.question-types{
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: $white;
+  opacity: 0.9;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+
+  .ghost-button{
+    @include button-shape;
+    @include default-font-size;
+    border: solid 3px $navy-blue;
+    font-weight: bold;
+    max-width: 80%;
+    min-width: 350px;
+    display:block;
+    margin:0 auto;
+    margin-top: 30px;
+    zoom: 1;
+    color: $navy-blue;
+    background-color : transparent;
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  .go-back{
+    @include default-font-size;
+    color: $greyish;
+    margin-top: 35px;
+    display: block;
+  }
+}
+
+
+input, textarea{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  min-width:350px;
+  border:none;
+  border-bottom:1px solid $white;
+  background: transparent;
+  color: $white;
+  resize: none;
+}
+
+input:focus, textarea:focus {
+  outline:none;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  color:    $verylight-green;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ color:    $verylight-green;
+ opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+ color:    $verylight-green;
+ opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+ color:    $verylight-green;
+}

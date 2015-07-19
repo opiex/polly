@@ -1,5 +1,7 @@
-<h4>Poll Type:</h4>
-<a class="btn btn-default" href="#/ask/free" role="button">Open Question</a>
-<a class="btn btn-default" href="#/ask/single" role="button">One Choice</a>
-<a class="btn btn-default" href="#/ask/multiple" role="button">Mutiple Choices</a>
-<a href= "#/">Go Back</a>
+<div class="question-types" ng-show="navigationClicked">
+  <h4 class="onwhite">Poll Type:</h4>
+  <a  href="#/ask/free"><button class="ghost-button">Open Question</button></a>
+  <a href="#/ask/single"><button class="ghost-button">One Choice</button></a>
+  <a href="#/ask/multiple"><button class="ghost-button">Mutiple Choices</button></a>
+  <a href ng-click="toggleNavigation()" class="go-back">Go Back</a>
+</div>

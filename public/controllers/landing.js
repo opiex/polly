@@ -1,8 +1,7 @@
 var pollyApp = angular.module('pollyApp', ['ngRoute']);
 pollyApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
-  console.log("Hello World from controller");
 
-//$scope.questions = [{title: "What's your favorite movie?", id:"2"}, {title: "What's your favorite pokemon?", id:"3"}];
+$scope.navigationClicked = false;
 
 var refresh = function() {
   $http.get('/questions').success(function(response) {
@@ -13,31 +12,19 @@ var refresh = function() {
 
 refresh();
 
+$scope.toggleNavigation = function(){
+  console.log("called navigation, current state: " );
+  $scope.navigationClicked = !$scope.navigationClicked;
+};
+
 }]);
 
+pollyApp.directive('pollyNavigation', function() {
+  console.log("asking for nav");
+  return {
+    restrict: 'E',
+    templateUrl: '../partials/nav.html'
+  };
+});
 
-pollyApp.config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
-    $routeProvider.
-    when('/', {
-      templateUrl: '/partials/landing.html',
-      controller: 'AppCtrl'
-    }).
-    when('/questions/:questionId', {
-      templateUrl: 'partials/question.html',
-      controller: 'questionCtrl'
-    }).
-    when('/nav', {
-      templateUrl: 'partials/nav.html',
-      controller: 'navCtrl'
-    }).
-    when('/ask/:questionType', {
-      templateUrl: 'partials/ask.html',
-      controller: 'NewQuestionCtrl'
-    }).
-    otherwise({
-      redirectTo: '/'
-    });
-
-  }]);
 

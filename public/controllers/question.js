@@ -1,19 +1,19 @@
 
 
 pollyApp.controller('questionCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
-  console.log("Hello World from question");
 
   $scope.canVote = true;
   $scope.answersVoted = [];
   $scope.question = "";
 
   var refresh = function(){
-    $http.get('/questions/' +$routeParams.questionId).success(function(response) {
+    $http.get('/questions/' +$routeParams.questionId)
+    .success(function(response) {
       $scope.question = response;
       $scope.response= "";
-      //console.log($scope.question.title +" receieved");
-      //console.log($scope.question.questionType);
-
+    })
+    .error(function(response){
+      console.log("error loading question");
     });
   };
 
@@ -33,8 +33,13 @@ pollyApp.controller('questionCtrl', ['$scope', '$http', '$routeParams', function
 
   $scope.addResponse = function(){
     $scope.question.responses.push($scope.response);
-    $http.put('/questions/ ', $scope.question).success(function(response) {
+    $http.put('/questions/ ', $scope.question)
+    .success(function(response) {
       console.log(response);
+      refresh();
+    })
+    .error(function(response){
+      console.log("error adding response");
       refresh();
     });
   };
@@ -67,9 +72,13 @@ pollyApp.controller('questionCtrl', ['$scope', '$http', '$routeParams', function
   };
 
   addVoteInServer = function(index, numToAdd){
-    $http.put('/questions/vote', {question: $scope.question, response: index, numToAdd: numToAdd}).success(function(response) {
+    $http.put('/questions/vote', {question: $scope.question, response: index, numToAdd: numToAdd})
+    .success(function(response) {
       console.log(response);
       refresh();
+    })
+    .error(function(response){
+      console.log("error voting");
     });
   };
 
