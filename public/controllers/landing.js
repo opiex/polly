@@ -4,6 +4,7 @@ pollyApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
 $scope.navigationClicked = false;
 
 var refresh = function() {
+  console.log('asking for frontpage questions');
   $http.get('/questions').success(function(response) {
     console.log("I got the data I requested");
     $scope.questions = response;
@@ -20,7 +21,6 @@ $scope.toggleNavigation = function(){
 }]);
 
 pollyApp.directive('pollyNavigation', function() {
-  console.log("asking for nav");
   return {
     restrict: 'E',
     templateUrl: '../partials/nav.html'
