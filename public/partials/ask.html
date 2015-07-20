@@ -1,5 +1,4 @@
-<h4>Enter your question here:</h4>
-<textarea ng-model="question.title" placeholder= "ex: What's your favorite pokemon?"></textarea>
+<textarea ng-model="question.title" placeholder= "Enter your question here... ex: What's your favorite pokemon?"></textarea>
 
 <div ng-show = "isNotFree()">
 
@@ -10,4 +9,4 @@
 <a href ng-click="addAnswer()">Add Answer</a>
 </div>
 
-<a href= "#/" ng-click="addQuestion()">Ask</a>
+<a href= "#/" class = "submit-btn" ng-click="addQuestion()">Ask</a>

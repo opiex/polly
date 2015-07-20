@@ -11,6 +11,8 @@ $greyish: #a4bbb9;
   src: local('NexaFreeBoldwebfont'), url('../fonts/NexaFreeBoldwebfont.woff') format('woff'), url('../fonts/NexaFreeBoldwebfont.ttf') format('truetype');
 }
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
 @mixin gradient-vertical($start-color, $end-color, $start-percent, $end-percent) {
   background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+
   background-image: -o-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Opera 12
@@ -30,6 +32,7 @@ $greyish: #a4bbb9;
 }
 
 @mixin default-font-size{
+  font-family: 'Open Sans', sans-serif;
   font-size: 18px;
 }
 
@@ -37,7 +40,7 @@ $greyish: #a4bbb9;
   border-radius: 30px;
   display: inline-block;
   margin-top: 50px;
-  padding: 15 100 15 100;
+  padding: 15 20 15 20;
   width: 100%;
 }
 
@@ -71,17 +74,31 @@ ul {
 
 ul li{
   @include default-font-size;
-  margin-top: 20px;
   color: $white;
 }
 
 a, a:hover, a:active, a:visited{
+  margin-top: 20;
+  display: inline-block;
   @include default-font-size;
   color: $white;
 }
 
+.submit-btn{
+  float: right;
+}
+
+.call-to-action, .call-to-action:hover{
+  display: inline;
+}
+
+.nav-btn, .nav-btn:hover{
+  display: block;
+}
+
 .whitebutton{
   @include button-shape;
+  width: 100%;
   font-weight: bold;
   background-color: $white;
   text-align: center;
@@ -121,6 +138,11 @@ a, a:hover, a:active, a:visited{
   -webkit-transition:all linear 0.5s;
   transition:all linear 0.5s;
 
+  .wrapper{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
   .ghost-button{
     @include button-shape;
     @include default-font-size;
@@ -148,17 +170,20 @@ a, a:hover, a:active, a:visited{
   }
 }
 
-
 input, textarea{
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
-  min-width:350px;
+  width: 100%;
   border:none;
   border-bottom:1px solid $white;
   background: transparent;
   color: $white;
   resize: none;
+}
+
+textarea{
+  margin-bottom: 35px;
 }
 
 input:focus, textarea:focus {
