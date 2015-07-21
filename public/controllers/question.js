@@ -32,6 +32,7 @@ pollyApp.controller('questionCtrl', ['$scope', '$http', '$routeParams', function
   };
 
   $scope.addResponse = function(){
+    if(/\S/.test($scope.response) && ($scope.response !== undefined)){
     $scope.question.responses.push($scope.response);
     $http.put('/questions/ ', $scope.question)
     .success(function(response) {
@@ -39,9 +40,13 @@ pollyApp.controller('questionCtrl', ['$scope', '$http', '$routeParams', function
       refresh();
     })
     .error(function(response){
-      console.log("error adding response");
+      alert("error adding response");
       refresh();
     });
+    }
+    else{
+      alert("cannot submit empty answer...");
+    }
   };
 
   $scope.addVote = function(index){
@@ -52,7 +57,7 @@ pollyApp.controller('questionCtrl', ['$scope', '$http', '$routeParams', function
         addVoteInServer(index, 1);
       }
       else{
-        console.log("cant vote. already voted!");
+        alert("cant vote. already voted!");
       }
     }
     else if($scope.question.questionType === "multiple"){

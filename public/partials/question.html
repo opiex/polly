@@ -2,9 +2,10 @@
 <h3>{{ question.title }}</h3>
 
 <div ng-show="isFreeQuestion()">
+  <form name="answerform">
   <input type="text" ng-model="response" placeholder="Answer Here..."></input>
-  <a href ng-click="addResponse()">Submit</a>
-
+    <a href ng-click="addResponse()">Submit</a>
+  </form>
 
   <h4>People Answered:</h4>
   <ul>

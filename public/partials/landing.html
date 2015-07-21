@@ -9,7 +9,11 @@
 
 <h4>See (real) examples:</h4>
 <ul>
-  <li ng-repeat="q in questions | limitTo: 3"><a href="#/questions/{{q._id}}">{{q.title}}</a></li>
+  <li ng-repeat="q in questions | limitTo: 3"><a href="#/questions/{{q._id}}">{{q.title}}
+
+  <div class="answersCountWrapper">{{q.sumOfAnswers}}</div>
+  </a>
+</li>
 </ul>
 
 <a href class="call-to-action"><button class = "whitebutton" ng-click="toggleNavigation()">+ Ask Something</button></a>

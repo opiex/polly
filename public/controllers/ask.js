@@ -1,5 +1,5 @@
 
-pollyApp.controller('NewQuestionCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+pollyApp.controller('NewQuestionCtrl', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
 
   $scope.question = {};
   $scope.question.questionType = $routeParams.questionType;
@@ -12,21 +12,63 @@ pollyApp.controller('NewQuestionCtrl', ['$scope', '$http', '$routeParams', funct
     return ($routeParams.questionType !== 'free');
   };
 
-  $scope.addAnswer = function() {
-    $scope.question.answers.push({value: '', votes: 0});
-    console.log($scope.question.answers);
+  $scope.addAnswer = function(index) {
+    //console.log("answer is: " +index);
+    if((index === $scope.question.answers.length - 1) && (index < 6)){
+      $scope.question.answers.push({value: '', votes: 0});
+    }
+  };
+
+  var validate = function(){
+    var isValid = true;
+    isValid = isValid && /\S/.test($scope.question.title) && ($scope.question.title !== undefined);
+    if($scope.question.questionType !== 'free'){
+      var countOfValidAnswers = 0;
+      for(var i = 0; i < $scope.question.answers.length; i++){
+        //console.log($scope.question.answers[i].value);
+        var currentAnswer = $scope.question.answers[i];
+        if(/\S/.test(currentAnswer.value) && currentAnswer.value !== undefined){
+          countOfValidAnswers++;
+        }
+      }
+      isValid = isValid && (countOfValidAnswers > 0);
+    }
+    return isValid;
+  };
+
+
+  var modify = function(question){
+    var modifiedQuestion = question;
+    for(var i = 0; i < modifiedQuestion.answers.length; i++){
+        var currentAnswer = modifiedQuestion.answers[i];
+        if(!(/\S/.test(currentAnswer.value) && currentAnswer.value !== undefined)){
+          console.log("answer " +i +" failed the test...");
+          modifiedQuestion.answers.splice(i, 1);
+          i--;
+        }
+        else{
+          console.log("answer " +i +" passed the test... value: " +currentAnswer.value);
+        }
+      }
+    return modifiedQuestion;
   };
 
   $scope.addQuestion = function() {
-    console.log("submitting question:");
-    console.log($scope.question);
-    $http.post('/questions', $scope.question)
-    .success(function(response) {
-      console.log(response);
-    })
-    .error(function(response){
-      console.log("error adding question");
-    });
+    if(validate()){
+      console.log("submitting question:");
+      console.log($scope.question);
+      var modifiedQuestion = modify($scope.question);
+      $http.post('/questions', modifiedQuestion)
+      .success(function(response) {
+        console.log(response);
+        $location.path('/#');
+      })
+      .error(function(response){
+        alert("error adding question");
+      });
+    }
+    else{
+      alert("invalid details...");
+    }
   };
-
 }]);
