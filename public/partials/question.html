@@ -3,30 +3,48 @@
 
 <div ng-show="isFreeQuestion()">
   <form name="answerform">
-  <textarea type="text" msd-elastic ng-model="response" placeholder="Answer Here..."></textarea>
-    <a href ng-click="addResponse()">Submit</a>
+    <textarea type="text" msd-elastic ng-model="response" placeholder="Answer Here..." maxlength="150"></textarea>
+    <a href class="call-to-action" ng-click="addResponse()"><button class="whitebutton">Submit Answer</button></a>
   </form>
 
-  <h4>People Answered:</h4>
-  <ul>
-    <li ng-repeat="response in question.responses">
-      {{ $index + 1 }}. {{ response }}
-    </li>
-  </ul>
+  <div class = "center-wrapper">
+    <h4>People Answered:</h4>
+    <ul>
+      <li ng-repeat="response in question.responses">
+        {{ $index + 1 }}. {{ response }}
+      </li>
+    </ul>
+  </div>
 </div>
 
-<div ng-show="isOneChoiceQuestion()">
+<!--
   <span ng-repeat="answer in question.answers">
-    <h4>{{answer.value}} - {{answer.votes}} votes | <a href ng-click="addVote($index)">Vote</a></h4>
+    <div class="poll-answer" >
+      <div class="poll-answer-text">
 
+      </div>
+    </div>
   </span>
+</div> -->
+<div ng-show="isOneChoiceQuestion()" >
+  <div ng-repeat="answer in question.answers">
+    <div class="poll-container" ng-click="addVote($index)">
+    <div class="poll-results" ng-style="{'width': '{{getWidth(answer.votes)}}'}"></div>
+      <div class="poll-text">{{answer.value}} - {{answer.votes}} votes</div>
+    </div>
+  </div>
 </div>
 
 
 <div ng-show="isMultiChoiceQuestion()">
-  <span ng-repeat="answer in question.answers">
-    <h4>{{answer.value}} - {{answer.votes}} votes | <a href ng-click="addVote($index)">Vote</a></h4>
-  </span>
+  <div ng-repeat="answer in question.answers">
+    <div class="poll-container" ng-click="addVote($index)">
+    <div class="poll-results" ng-style="{'width': '{{getWidth(answer.votes)}}'}"></div>
+      <div class="poll-text">{{answer.value}} - {{answer.votes}} votes</div>
+    </div>
+  </div>
 </div>
 
-<a href= "#/">Go Back</a>
+<div class = "center-wrapper">
+  <a href= "#/">Go Back</a>
+</div>

@@ -5,6 +5,15 @@ pollyApp.controller('questionCtrl', ['$scope', '$http', '$routeParams', function
   $scope.canVote = true;
   $scope.answersVoted = [];
   $scope.question = "";
+  var sumAnswers = function(){
+    console.log($scope.question);
+    var sum = 0;
+    for(var i = 0; i < $scope.question.answers.length; i++){
+      sum+= $scope.question.answers[i].votes;
+    }
+    console.log(sum + " total votes");
+    return sum;
+  };
 
   var refresh = function(){
     $http.get('/questions/' +$routeParams.questionId)
@@ -33,16 +42,16 @@ pollyApp.controller('questionCtrl', ['$scope', '$http', '$routeParams', function
 
   $scope.addResponse = function(){
     if(/\S/.test($scope.response) && ($scope.response !== undefined)){
-    $scope.question.responses.push($scope.response);
-    $http.put('/questions/ ', $scope.question)
-    .success(function(response) {
-      console.log(response);
-      refresh();
-    })
-    .error(function(response){
-      alert("error adding response");
-      refresh();
-    });
+      $scope.question.responses.push($scope.response);
+      $http.put('/questions/ ', $scope.question)
+      .success(function(response) {
+        console.log(response);
+        refresh();
+      })
+      .error(function(response){
+        alert("error adding response");
+        refresh();
+      });
     }
     else{
       alert("cannot submit empty answer...");
@@ -76,7 +85,13 @@ pollyApp.controller('questionCtrl', ['$scope', '$http', '$routeParams', function
     }
   };
 
-  addVoteInServer = function(index, numToAdd){
+  $scope.getWidth = function(votes){
+    var percentage = (votes*100 / sumAnswers()) + '%';
+    console.log('returning ' +percentage);
+    return percentage;
+  };
+
+  var addVoteInServer = function(index, numToAdd){
     $http.put('/questions/vote', {question: $scope.question, response: index, numToAdd: numToAdd})
     .success(function(response) {
       console.log(response);

@@ -3,7 +3,6 @@ pollyApp.controller('NewQuestionCtrl', ['$scope', '$http', '$routeParams', '$loc
 
   $scope.question = {};
   $scope.question.questionType = $routeParams.questionType;
-  $scope.question.answersCount = 0;
   $scope.question.responses = [];
   $scope.question.answers = [{value: '', votes: 0}, {value: '', votes: 0}];
   $scope.numberOfAnswers = $scope.question.answers.length;
