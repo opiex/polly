@@ -1,4 +1,6 @@
-  <textarea ng-model="question.title" placeholder= "Enter your question here... ex: What's your favorite pokemon?" ng-pattern="/^[a-zA-Z 0-9]{3,}/"></textarea>
+  <textarea msd-elastic ng-model="question.title" placeholder= "Enter your question here...">
+
+  </textarea>
 
   <div ng-show = "isNotFree()">
     <div ng-repeat="answer in question.answers">
@@ -9,4 +11,6 @@
   </div>
 
   <a href class="call-to-action" ng-click="addQuestion()"><button class = "whitebutton">Ask</button></a>
-  <a href= "#/">Go Back</a>
+  <div class = "back-wrapper">
+    <a href= "#/">Go Back</a>
+  </div>

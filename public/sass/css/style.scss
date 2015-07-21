@@ -93,6 +93,11 @@ a, a:hover, a:active, a:visited{
   display: inline;
 }
 
+.back-wrapper{
+  width: 100%;
+  text-align: center;
+}
+
 .nav-btn, .nav-btn:hover{
   display: block;
 }
@@ -193,6 +198,7 @@ input, textarea{
 }
 
 textarea{
+  height: 50px;
   margin-bottom: 35px;
 }
 

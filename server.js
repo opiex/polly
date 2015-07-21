@@ -3,17 +3,7 @@ var app = express();
 var mongojs = require('mongojs');
 /*var db = mongojs('test', ['polly']);*/
 var port = process.env.PORT || 9000;
-
-/*if (app.get('env') === 'development'){
-  //db = mongojs('test', ['polly']);
-  db = mongojs('mongodb://polly:polly12@ds031671.mongolab.com:31671/heroku_k4l3s9sz', ['polly']);
-}
-else{
-  db = mongojs('mongodb://polly:polly12@ds031671.mongolab.com:31671/heroku_k4l3s9sz', ['polly']);
-}*/
-
 var db = mongojs('mongodb://polly:polly12@ds031671.mongolab.com:31671/heroku_k4l3s9sz', ['polly']);
-
 
 var path = require('path');
 var bodyParser = require('body-parser');

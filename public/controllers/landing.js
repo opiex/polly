@@ -1,4 +1,4 @@
-var pollyApp = angular.module('pollyApp', ['ngRoute']);
+var pollyApp = angular.module('pollyApp', ['ngRoute', 'monospaced.elastic']);
 pollyApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
 
   $scope.navigationClicked = false;
