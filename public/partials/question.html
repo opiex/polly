@@ -17,19 +17,11 @@
   </div>
 </div>
 
-<!--
-  <span ng-repeat="answer in question.answers">
-    <div class="poll-answer" >
-      <div class="poll-answer-text">
 
-      </div>
-    </div>
-  </span>
-</div> -->
 <div ng-show="isOneChoiceQuestion()" >
   <div ng-repeat="answer in question.answers">
     <div class="poll-container" ng-click="addVote($index)">
-    <div class="poll-results" ng-style="{'width': '{{getWidth(answer.votes)}}'}"></div>
+      <div class="poll-results" ng-style="{'width': '{{getWidth(answer.votes)}}'}"></div>
       <div class="poll-text">{{answer.value}} - {{answer.votes}} votes</div>
     </div>
   </div>
@@ -39,7 +31,7 @@
 <div ng-show="isMultiChoiceQuestion()">
   <div ng-repeat="answer in question.answers">
     <div class="poll-container" ng-click="addVote($index)">
-    <div class="poll-results" ng-style="{'width': '{{getWidth(answer.votes)}}'}"></div>
+      <div class="poll-results" ng-style="{'width': '{{getWidth(answer.votes)}}'}"></div>
       <div class="poll-text">{{answer.value}} - {{answer.votes}} votes</div>
     </div>
   </div>

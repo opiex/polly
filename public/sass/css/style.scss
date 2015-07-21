@@ -96,6 +96,7 @@ h4{
     height: 100%;
     background: rgba(0, 0, 0, .2);
     z-index: -1;
+    transition: 0.5s all;
   }
 
   .poll-text{
@@ -223,6 +224,37 @@ a, a:hover, a:active, a:visited{
   border: solid 3px $white;
   border-radius: 20px;
   background-color : transparent;
+}
+
+.fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    overflow: auto;
+    opacity: 1;
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 0 auto;
+}
+.fade.ng-enter,
+.fade.ng-leave {
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.fade.ng-enter {
+    opacity: 0;
+}
+.fade.ng-enter-active {
+    opacity: 1;
+}
+.fade.ng-leave {
+    opacity: 1;
+}
+.fade.ng-leave-active {
+    opacity: 0;
 }
 
 input, textarea{
